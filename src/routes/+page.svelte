@@ -31,7 +31,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-		padding-left: 3rem;
     flex-grow: 1;
 	}
 
