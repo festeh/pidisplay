@@ -1,6 +1,9 @@
 <script>
-import css from "../globals.css";
-
+	import { AppBar, AppShell } from '@skeletonlabs/skeleton';
+	import '../app.css';
 </script>
 
-<slot></slot>
+<!-- <AppShell> -->
+	<AppBar></AppBar>
+	<slot />
+<!-- </AppShell> -->
