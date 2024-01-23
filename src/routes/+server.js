@@ -3,11 +3,11 @@ import stateStore from '../stores/state.js';
 
 let store = 'IDLE';
 
-export function getStore() {
+function getStore() {
   return store;
 }
 
-export function setStore(value) {
+function setStore(value) {
   store = value;
 }
 
@@ -22,10 +22,10 @@ export async function POST({ request }) {
 }
 
 export async function GET({ url, request }) {
-  const data = {state: getStore()}
-  return new Response(JSON.stringify(data), {status: 200})
+  const data = { state: getStore() }
+  return new Response(JSON.stringify(data), { status: 200 })
 }
 
 export async function fallback({ request }) {
-	return text(`I caught your ${request.method} request!`);
+  return text(`I caught your ${request.method} request!`);
 }
