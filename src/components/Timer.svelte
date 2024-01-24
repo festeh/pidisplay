@@ -3,10 +3,15 @@
 
 	import { onMount } from 'svelte';
 	import { invalidateAll } from '$app/navigation';
+  import { poll } from '$lib/utils.js';
 
 	onMount(() => {
 		const interval = setInterval(() => updateTime(), 1000);
-		return () => clearInterval(interval);
+		const waitInterval = poll('FOCUS');
+		return () => {
+			clearInterval(waitInterval);
+			clearInterval(interval);
+		};
 	});
 
 	export let totalSeconds;
@@ -44,7 +49,7 @@
 </script>
 
 <div class="clock flex h-full flex-col items-center justify-center font-sans">
-	<div class="font-sans text-3xl mb-4">Focus for just</div>
+	<div class="mb-4 font-sans text-3xl">Focus for just</div>
 	<div class="timer mb-8 flex text-6xl">
 		<div class="digit hour-tens">{minutesTens}</div>
 		<div class="digit hour-ones">{minutesOnes}</div>

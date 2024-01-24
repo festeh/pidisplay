@@ -1,16 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
-	import { invalidateAll } from '$app/navigation';
+  import { poll } from '$lib/utils.js';
 
 	onMount(async () => {
-		const waitInterval = setInterval(async () => {
-			const state = await fetch('/');
-			const data = await state.json();
-			console.log('IDLE component, fetch() result:', data);
-			if (data.state !== 'IDLE') {
-				await invalidateAll();
-			}
-		}, 1000);
+		const waitInterval = poll('IDLE');
 		const flickInterval = setInterval(() => {
 			const flicker = document.querySelector('.idle');
 			console.log('flicker', flicker);

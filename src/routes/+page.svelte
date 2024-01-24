@@ -1,17 +1,12 @@
 <script>
 	// @ts-nocheck
 
-	import stateStore from '../stores/state.js';
-	import { page } from '$app/stores';
-
 	import Idle from '../components/Idle.svelte';
 	import Clock from '../components/Clock.svelte';
 	import Timer from '../components/Timer.svelte';
 
 	export let data;
 	$: state = data.data.state;
-
-	console.log(state);
 </script>
 
 {#if state === 'IDLE'}
