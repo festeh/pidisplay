@@ -44,8 +44,8 @@
 </script>
 
 <div class="clock flex h-full flex-col items-center justify-center font-sans">
-	<div class="font-sans text-2xl mb-4">Focus for just</div>
-	<div class="timer mb-8 flex text-5xl">
+	<div class="font-sans text-3xl mb-4">Focus for just</div>
+	<div class="timer mb-8 flex text-6xl">
 		<div class="digit hour-tens">{minutesTens}</div>
 		<div class="digit hour-ones">{minutesOnes}</div>
 		<div class="colon">:</div>

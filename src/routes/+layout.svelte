@@ -3,7 +3,9 @@
 	import '../app.css';
 </script>
 
-<!-- <AppShell> -->
-	<AppBar></AppBar>
+<AppShell>
+	<svelte:fragment slot="header">
+		<AppBar></AppBar>
+	</svelte:fragment>
 	<slot />
-<!-- </AppShell> -->
+</AppShell>
