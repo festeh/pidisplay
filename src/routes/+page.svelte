@@ -17,6 +17,6 @@
 	<Clock totalSeconds="10" />
 	<!-- else if content here -->
 {:else}
-	<Timer totalSeconds={25 * 60} />
+	<Timer totalSeconds={25 * 60} task={data.data.task} />
 	<!-- else content here -->
 {/if}
