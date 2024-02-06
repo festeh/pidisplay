@@ -1,10 +1,10 @@
-<script>
-	// @ts-nocheck
-	export let task;
-
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { invalidateAll } from '$app/navigation';
-	import { poll } from '$lib/utils.js';
+	import { poll } from '$lib/utils';
+	import type { TaskInfo } from '$lib/types';
+
+	export let taskInfo: TaskInfo;
 
 	onMount(() => {
 		const interval = setInterval(() => updateTime(), 1000);
@@ -15,12 +15,12 @@
 		};
 	});
 
-	export let totalSeconds;
-
 	let minutesTens = 0;
 	let minutesOnes = 0;
 	let secondsTens = 0;
 	let secondsOnes = 0;
+
+	let totalSeconds = taskInfo.duration * 60;
 
 	function updateTime() {
 		if (totalSeconds <= 0) {
@@ -44,18 +44,19 @@
 			secondsOnes = seconds % 10;
 
 			totalSeconds = totalSeconds - 1;
-			console.log('Timer component', totalSeconds);
 		}
 	}
 </script>
 
 <div class="clock flex h-full flex-col items-center justify-center font-sans">
-	{#if task}
-		<div class="mb-4 font-sans text-3xl">
-			Focus on <span
-				class="mb-2 max-w-prose overflow-hidden rounded-xl border border-primary-500 p-1 pl-3 pr-3 font-bold"
-				>{task}</span
-			> for just
+	{#if taskInfo.title}
+		<div class="flex flex-col mb-4 font-sans text-3xl">
+			<span class="self-center">Focus on</span>
+			<span
+				class="mb-2 overflow-hidden rounded-xl border border-primary-500 p-2 m-3 font-bold"
+				>{taskInfo.title}</span
+			>
+			<span class="self-center">for just</span>
 		</div>
 	{:else}
 		<div class="mb-4 font-sans text-3xl">Focus for just</div>

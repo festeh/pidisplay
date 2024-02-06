@@ -1,22 +1,26 @@
-<script>
-	import { onMount } from 'svelte';
-  import { poll } from '$lib/utils.js';
+<script lang='ts'>
+	import { onDestroy, onMount } from 'svelte';
+  import { poll } from '$lib/utils';
+
+  let waitInterval: number | undefined;
+  let flickInterval: number | undefined;
 
 	onMount(async () => {
-		const waitInterval = poll('IDLE');
-		const flickInterval = setInterval(() => {
-			const flicker = document.querySelector('.idle');
-			console.log('flicker', flicker);
+		waitInterval = poll('IDLE');
+		flickInterval = setInterval(() => {
+			const flicker = document.querySelector('.idle')!;
 			flicker.classList.remove('flicker');
 			setTimeout(() => {
 				flicker.classList.add('flicker');
 			}, 1000);
 		}, 30000);
-		return () => {
-			clearInterval(waitInterval);
-			clearInterval(flickInterval);
-		};
 	});
+
+  onDestroy(() => {
+    clearInterval(waitInterval);
+    clearInterval(flickInterval);
+  })
+
 </script>
 
 <div
